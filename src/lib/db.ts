@@ -20,11 +20,11 @@ export interface Booking {
 }
 
 export async function getSoldTicketsCount(): Promise<number> {
-  const result = await sql<{ count: number }>`
+  const result = await sql`
     SELECT COALESCE(SUM(tickets), 0) as count FROM bookings
     WHERE stripe_payment_status = 'paid'
   `;
-  return Number(result[0]?.count ?? 0);
+  return Number((result[0] as { count: number })?.count ?? 0);
 }
 
 export async function getTicketsRemaining(): Promise<number> {
@@ -40,12 +40,12 @@ export async function createBooking(
   company: string,
   tickets: number
 ): Promise<Booking> {
-  const result = await sql<Booking>`
+  const result = await sql`
     INSERT INTO bookings (stripe_session_id, name, email, company, tickets, stripe_payment_status)
     VALUES (${sessionId}, ${name}, ${email}, ${company}, ${tickets}, 'pending')
     RETURNING *
   `;
-  return result[0];
+  return result[0] as Booking;
 }
 
 export async function updateBookingStatus(
@@ -62,8 +62,8 @@ export async function updateBookingStatus(
 export async function getBookingBySessionId(
   sessionId: string
 ): Promise<Booking | null> {
-  const result = await sql<Booking>`
+  const result = await sql`
     SELECT * FROM bookings WHERE stripe_session_id = ${sessionId} LIMIT 1
   `;
-  return result[0] ?? null;
+  return (result[0] as Booking) ?? null;
 }
