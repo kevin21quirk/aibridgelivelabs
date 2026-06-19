@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="ocean" cx="40%" cy="35%">
+      <stop offset="0%" stop-color="#1e90ff"/>
+      <stop offset="40%" stop-color="#1565c0"/>
+      <stop offset="75%" stop-color="#0d47a1"/>
+      <stop offset="100%" stop-color="#051b3e"/>
+    </radialGradient>
+    <radialGradient id="atmosphere" cx="50%" cy="50%">
+      <stop offset="85%" stop-color="transparent"/>
+      <stop offset="95%" stop-color="rgba(100,180,255,0.15)"/>
+      <stop offset="100%" stop-color="rgba(60,140,255,0.3)"/>
+    </radialGradient>
+    <radialGradient id="shine" cx="30%" cy="25%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0.05)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+    <filter id="cloud-blur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+  
+  <!-- Globe body - ocean -->
+  <circle cx="200" cy="200" r="190" fill="url(#ocean)"/>
+  
+  <!-- North America -->
+  <path d="M95 80 L105 70 L120 65 L140 68 L155 75 L165 70 L175 72 L180 80 L175 90 L170 100 L165 115 L155 125 L150 135 L140 145 L130 155 L120 158 L110 155 L105 148 L100 140 L95 130 L90 120 L88 110 L92 100 L95 90 Z" fill="#228B22" opacity="0.85"/>
+  <!-- Canada/Greenland -->
+  <path d="M110 50 L125 45 L145 48 L160 52 L170 55 L175 60 L170 65 L155 68 L140 63 L125 60 L115 55 Z" fill="#228B22" opacity="0.75"/>
+  <path d="M155 35 L170 32 L185 38 L180 48 L168 50 L155 45 Z" fill="#228B22" opacity="0.7"/>
+  
+  <!-- South America -->
+  <path d="M130 170 L140 165 L148 168 L155 175 L160 185 L162 200 L165 215 L168 230 L170 248 L168 265 L162 278 L155 288 L148 295 L140 298 L132 295 L125 285 L120 270 L118 255 L120 240 L122 225 L125 210 L128 195 L130 180 Z" fill="#228B22" opacity="0.85"/>
+  
+  <!-- Europe -->
+  <path d="M195 72 L205 68 L215 70 L222 75 L225 82 L220 88 L215 92 L210 95 L205 92 L200 88 L195 82 Z" fill="#228B22" opacity="0.8"/>
+  <!-- UK/Ireland -->
+  <path d="M185 75 L190 72 L193 76 L191 80 L187 82 L184 79 Z" fill="#228B22" opacity="0.75"/>
+  <!-- Scandinavia -->
+  <path d="M210 55 L215 50 L218 52 L220 58 L218 65 L215 68 L212 65 L210 60 Z" fill="#228B22" opacity="0.7"/>
+  
+  <!-- Africa -->
+  <path d="M200 105 L215 100 L228 105 L238 115 L245 128 L250 145 L252 165 L250 185 L248 205 L242 220 L235 235 L225 245 L215 250 L205 248 L198 240 L192 228 L188 215 L186 200 L188 185 L190 170 L192 155 L195 140 L198 125 L200 115 Z" fill="#228B22" opacity="0.85"/>
+  
+  <!-- Middle East -->
+  <path d="M235 100 L248 95 L258 100 L262 108 L258 115 L250 118 L242 115 L238 108 Z" fill="#228B22" opacity="0.75"/>
+  
+  <!-- Asia (partial - visible portion) -->
+  <path d="M260 70 L275 65 L290 68 L305 75 L315 85 L320 98 L318 110 L310 120 L300 125 L290 122 L278 118 L268 112 L260 102 L255 90 L258 78 Z" fill="#228B22" opacity="0.8"/>
+  <!-- India -->
+  <path d="M270 125 L280 120 L288 125 L290 135 L288 148 L282 158 L275 162 L268 158 L265 148 L266 138 L268 130 Z" fill="#228B22" opacity="0.8"/>
+  
+  <!-- Australia (edge) -->
+  <path d="M310 200 L325 195 L338 200 L345 210 L342 222 L335 230 L325 232 L315 228 L308 218 L308 208 Z" fill="#228B22" opacity="0.7"/>
+  
+  <!-- Antarctica hint -->
+  <path d="M140 340 L160 335 L185 333 L210 332 L235 334 L255 338 L270 342 L260 350 L240 354 L215 356 L190 355 L165 352 L148 348 Z" fill="#e8e8e8" opacity="0.5"/>
+  
+  <!-- Ice cap - Arctic -->
+  <ellipse cx="200" cy="28" rx="55" ry="18" fill="#e8e8e8" opacity="0.5"/>
+  
+  <!-- Clouds -->
+  <ellipse cx="120" cy="90" rx="25" ry="8" fill="white" opacity="0.25" filter="url(#cloud-blur)"/>
+  <ellipse cx="250" cy="150" rx="30" ry="10" fill="white" opacity="0.2" filter="url(#cloud-blur)"/>
+  <ellipse cx="170" cy="210" rx="22" ry="7" fill="white" opacity="0.2" filter="url(#cloud-blur)"/>
+  <ellipse cx="300" cy="180" rx="20" ry="6" fill="white" opacity="0.15" filter="url(#cloud-blur)"/>
+  <ellipse cx="150" cy="280" rx="28" ry="9" fill="white" opacity="0.2" filter="url(#cloud-blur)"/>
+  
+  <!-- Atmosphere glow -->
+  <circle cx="200" cy="200" r="192" fill="url(#atmosphere)"/>
+  
+  <!-- Specular highlight / shine -->
+  <circle cx="200" cy="200" r="190" fill="url(#shine)"/>
+  
+  <!-- Rim light -->
+  <circle cx="200" cy="200" r="190" fill="none" stroke="rgba(100,180,255,0.2)" stroke-width="2"/>
+</svg>
