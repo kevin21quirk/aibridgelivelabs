@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe, TICKET_PRICE_PENCE, MAX_TICKETS } from '../../../lib/stripe';
+import { getStripe, TICKET_PRICE_PENCE } from '../../../lib/stripe';
 import { getTicketsRemaining, createBooking } from '../../../lib/db';
 
 export async function POST(req: NextRequest) {
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
     const origin = req.headers.get('origin') || 'http://localhost:3000';
 
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
       customer_email: email,

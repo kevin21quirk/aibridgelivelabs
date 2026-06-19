@@ -1,12 +1,17 @@
-import { neon } from '@neondatabase/serverless';
+import { neon, NeonQueryFunction } from '@neondatabase/serverless';
 
-const DATABASE_URL = process.env.DATABASE_URL;
+let _sql: NeonQueryFunction<false, false> | null = null;
 
-if (!DATABASE_URL) {
-  throw new Error('DATABASE_URL is not set');
+function getSql() {
+  if (!_sql) {
+    const url = process.env.DATABASE_URL;
+    if (!url) {
+      throw new Error('DATABASE_URL is not set');
+    }
+    _sql = neon(url);
+  }
+  return _sql;
 }
-
-export const sql = neon(DATABASE_URL);
 
 export interface Booking {
   id: number;
@@ -20,7 +25,7 @@ export interface Booking {
 }
 
 export async function getSoldTicketsCount(): Promise<number> {
-  const result = await sql`
+  const result = await getSql()`
     SELECT COALESCE(SUM(tickets), 0) as count FROM bookings
     WHERE stripe_payment_status = 'paid'
   `;
@@ -40,7 +45,7 @@ export async function createBooking(
   company: string,
   tickets: number
 ): Promise<Booking> {
-  const result = await sql`
+  const result = await getSql()`
     INSERT INTO bookings (stripe_session_id, name, email, company, tickets, stripe_payment_status)
     VALUES (${sessionId}, ${name}, ${email}, ${company}, ${tickets}, 'pending')
     RETURNING *
@@ -52,7 +57,7 @@ export async function updateBookingStatus(
   sessionId: string,
   status: string
 ): Promise<void> {
-  await sql`
+  await getSql()`
     UPDATE bookings
     SET stripe_payment_status = ${status}
     WHERE stripe_session_id = ${sessionId}
@@ -62,7 +67,7 @@ export async function updateBookingStatus(
 export async function getBookingBySessionId(
   sessionId: string
 ): Promise<Booking | null> {
-  const result = await sql`
+  const result = await getSql()`
     SELECT * FROM bookings WHERE stripe_session_id = ${sessionId} LIMIT 1
   `;
   return (result[0] as Booking) ?? null;
