@@ -42,6 +42,50 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
         zIndex: 1 
       }} />
 
+      {/* AI Bridge Logo - far left */}
+      <div style={{ 
+        position: 'absolute',
+        top: '50%',
+        left: '3rem',
+        transform: 'translateY(-50%)',
+        pointerEvents: 'none',
+        zIndex: 5
+      }}>
+        <Image 
+          src="/aibridgelogo.png" 
+          alt="AI Bridge Solutions" 
+          width={400} 
+          height={120} 
+          style={{ 
+            filter: 'invert(1) brightness(2)', 
+            height: 'auto',
+            width: '280px'
+          }} 
+        />
+      </div>
+
+      {/* Firstname Communications Logo - far right */}
+      <div style={{ 
+        position: 'absolute',
+        top: '50%',
+        right: '3rem',
+        transform: 'translateY(-50%)',
+        pointerEvents: 'none',
+        zIndex: 5
+      }}>
+        <Image 
+          src="/fnc.png" 
+          alt="Firstname Communications" 
+          width={600} 
+          height={180} 
+          style={{ 
+            height: 'auto',
+            width: '280px',
+            objectFit: 'contain'
+          }} 
+        />
+      </div>
+
       {/* Content */}
       <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center', transform: `translateY(${scrollY * 0.3}px)` }}>
         {/* Enhanced Date/Time Badge */}
@@ -167,62 +211,6 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
             }}>
               Firstname Communications
             </span>
-          </div>
-        </div>
-
-        {/* Dual Logos */}
-        <div className="fade-in-up-delay-1" style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center', 
-          gap: '3rem', 
-          marginBottom: '1.5rem',
-          flexWrap: 'wrap'
-        }}>
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '1rem',
-            padding: '1rem 2rem',
-            background: 'rgba(255, 255, 255, 0.05)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '15px',
-            border: '1px solid rgba(255, 255, 255, 0.1)'
-          }}>
-            <Image 
-              src="/aibridgelogo.png" 
-              alt="AI Bridge Solutions" 
-              width={200} 
-              height={60} 
-              style={{ 
-                filter: 'invert(1) brightness(2)', 
-                height: 'auto', 
-                maxHeight: '50px', 
-                width: 'auto'
-              }} 
-            />
-          </div>
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '1rem',
-            padding: '1rem 2rem',
-            background: 'rgba(255, 255, 255, 0.05)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '15px',
-            border: '1px solid rgba(255, 255, 255, 0.1)'
-          }}>
-            <Image 
-              src="/fnc.png" 
-              alt="Firstname Communications" 
-              width={600} 
-              height={200} 
-              style={{ 
-                height: 'auto', 
-                width: '100%',
-                objectFit: 'contain'
-              }} 
-            />
           </div>
         </div>
 
