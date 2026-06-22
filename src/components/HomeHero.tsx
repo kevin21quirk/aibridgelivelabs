@@ -215,13 +215,14 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
             <Image 
               src="/fnc.png" 
               alt="Firstname Communications" 
-              width={320} 
-              height={90} 
+              width={400} 
+              height={120} 
               style={{ 
                 height: 'auto', 
                 maxHeight: '50px', 
                 width: 'auto',
-                objectFit: 'contain'
+                objectFit: 'contain',
+                maxWidth: '280px'
               }} 
             />
           </div>
