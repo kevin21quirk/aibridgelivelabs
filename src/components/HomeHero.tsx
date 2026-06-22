@@ -44,22 +44,187 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
 
       {/* Content */}
       <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center', transform: `translateY(${scrollY * 0.3}px)` }}>
-        {/* Badge */}
-        <div className="fade-in-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1.25rem', background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(10px)', borderRadius: '9999px', border: '1px solid rgba(255,255,255,0.12)', marginBottom: '2rem' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22d3ee', boxShadow: '0 0 12px rgba(34,211,238,0.5)' }} />
-          <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-muted)' }}>2nd September 2026 • Sign in 8:30am • Limited to 100 places</span>
+        {/* Enhanced Date/Time Badge */}
+        <div className="fade-in-up" style={{ 
+          display: 'inline-flex', 
+          alignItems: 'center', 
+          gap: '0.75rem', 
+          padding: '0.75rem 2rem', 
+          background: 'linear-gradient(135deg, rgba(34, 211, 238, 0.15), rgba(6, 182, 212, 0.1))', 
+          backdropFilter: 'blur(20px)', 
+          borderRadius: '50px', 
+          border: '2px solid rgba(34, 211, 238, 0.3)', 
+          marginBottom: '2rem',
+          boxShadow: '0 8px 32px rgba(34, 211, 238, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+        }}>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.5rem'
+          }}>
+            <div style={{ 
+              width: '12px', 
+              height: '12px', 
+              borderRadius: '50%', 
+              background: '#22d3ee', 
+              boxShadow: '0 0 20px rgba(34,211,238,0.8), 0 0 40px rgba(34,211,238,0.4)',
+              animation: 'pulse 2s infinite'
+            }} />
+            <span style={{ 
+              fontSize: '1rem', 
+              fontWeight: 600, 
+              color: '#ffffff',
+              letterSpacing: '0.05em'
+            }}>
+              2nd September 2026
+            </span>
+          </div>
+          <div style={{ 
+            width: '1px', 
+            height: '20px', 
+            background: 'rgba(255, 255, 255, 0.2)' 
+          }} />
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.5rem'
+          }}>
+            <span style={{ 
+              fontSize: '0.9rem', 
+              fontWeight: 500, 
+              color: 'rgba(255, 255, 255, 0.9)'
+            }}>
+              Sign in 8:30am
+            </span>
+          </div>
+          <div style={{ 
+            width: '1px', 
+            height: '20px', 
+            background: 'rgba(255, 255, 255, 0.2)' 
+          }} />
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '0.5rem'
+          }}>
+            <span style={{ 
+              fontSize: '0.9rem', 
+              fontWeight: 500, 
+              color: 'rgba(255, 255, 255, 0.9)'
+            }}>
+              Limited to 100 places
+            </span>
+          </div>
         </div>
 
-        {/* Partnership Badge */}
-        <div className="fade-in-up-delay-1" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1))', backdropFilter: 'blur(10px)', borderRadius: '9999px', border: '1px solid rgba(255,255,255,0.15)', marginBottom: '2rem' }}>
-          <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>Presented by AI Bridge Solutions</span>
-          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>in partnership with</span>
-          <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--accent)' }}>Firstname Communications</span>
+        {/* Enhanced Partnership Section with Logos */}
+        <div className="fade-in-up-delay-1" style={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          gap: '1rem', 
+          marginBottom: '2rem' 
+        }}>
+          <div style={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: '0.75rem', 
+            padding: '0.75rem 2rem', 
+            background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(139, 92, 246, 0.1))', 
+            backdropFilter: 'blur(20px)', 
+            borderRadius: '50px', 
+            border: '2px solid rgba(79, 70, 229, 0.3)', 
+            boxShadow: '0 8px 32px rgba(79, 70, 229, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+          }}>
+            <span style={{ 
+              fontSize: '1rem', 
+              fontWeight: 600, 
+              color: '#ffffff',
+              letterSpacing: '0.05em'
+            }}>
+              Presented by
+            </span>
+            <span style={{ 
+              fontSize: '1rem', 
+              fontWeight: 700, 
+              color: '#8b5cf6',
+              letterSpacing: '0.05em'
+            }}>
+              AI Bridge Solutions
+            </span>
+            <span style={{ 
+              fontSize: '0.9rem', 
+              color: 'rgba(255, 255, 255, 0.8)',
+              letterSpacing: '0.05em'
+            }}>
+              in partnership with
+            </span>
+            <span style={{ 
+              fontSize: '1rem', 
+              fontWeight: 700, 
+              color: '#06b6d4',
+              letterSpacing: '0.05em'
+            }}>
+              Firstname Communications
+            </span>
+          </div>
         </div>
 
-        {/* Logo */}
-        <div className="fade-in-up-delay-1" style={{ marginBottom: '1.5rem' }}>
-          <Image src="/aibridgelogo.png" alt="AI Bridge Solutions" width={280} height={80} style={{ filter: 'invert(1) brightness(2)', height: 'auto', maxHeight: '70px', width: 'auto', margin: '0 auto' }} />
+        {/* Dual Logos */}
+        <div className="fade-in-up-delay-1" style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          gap: '3rem', 
+          marginBottom: '1.5rem',
+          flexWrap: 'wrap'
+        }}>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '1rem',
+            padding: '1rem 2rem',
+            background: 'rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '15px',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}>
+            <Image 
+              src="/aibridgelogo.png" 
+              alt="AI Bridge Solutions" 
+              width={200} 
+              height={60} 
+              style={{ 
+                filter: 'invert(1) brightness(2)', 
+                height: 'auto', 
+                maxHeight: '50px', 
+                width: 'auto'
+              }} 
+            />
+          </div>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '1rem',
+            padding: '1rem 2rem',
+            background: 'rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '15px',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}>
+            <Image 
+              src="/fnc.png" 
+              alt="Firstname Communications" 
+              width={320} 
+              height={90} 
+              style={{ 
+                height: 'auto', 
+                maxHeight: '50px', 
+                width: 'auto',
+                objectFit: 'contain'
+              }} 
+            />
+          </div>
         </div>
 
         {/* Heading */}
