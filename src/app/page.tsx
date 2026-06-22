@@ -3,7 +3,6 @@ import Footer from '../components/Footer';
 import HomeHero from '../components/HomeHero';
 import HomeFeatures from '../components/HomeFeatures';
 import GlassCarousel from '../components/GlassCarousel';
-import HomeAgendaPreview from '../components/HomeAgendaPreview';
 import SpeakersSection from '../components/SpeakersSection';
 import HomeCTA from '../components/HomeCTA';
 import { getTicketsRemaining } from '../lib/db';
@@ -19,7 +18,6 @@ export default async function HomePage() {
       <HomeHero remaining={remaining} />
       <HomeFeatures />
       <GlassCarousel />
-      <HomeAgendaPreview />
       <SpeakersSection />
       <HomeCTA remaining={remaining} />
       <Footer />

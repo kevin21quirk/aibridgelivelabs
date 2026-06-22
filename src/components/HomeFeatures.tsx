@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 interface Stop {
@@ -11,17 +13,58 @@ interface Stop {
 }
 
 const schedule: Stop[] = [
-  { time: '8:30 am', icon: '☕', title: 'Sign in & welcome', kind: 'break' },
-  { time: '9:00 – 9:40', icon: '🧠', tag: 'Session 1', title: 'The AI Revolution', kind: 'session' },
-  { time: '9:40 – 10:10', icon: '📢', tag: 'Session 2', title: 'PR in the Age of AI', kind: 'session' },
+  { time: '8:30 am', icon: '👋', title: 'Sign in & welcome', kind: 'break' },
+  { time: '9:00 – 9:40', icon: '💡', tag: 'Session 1', title: 'The AI Revolution', kind: 'session' },
+  { time: '9:40 – 10:10', icon: '�', tag: 'Session 2', title: 'PR in the Age of AI', kind: 'session' },
   { time: '10:10 – 10:40', icon: '☕', title: 'Tea & coffee break', kind: 'break' },
-  { time: '10:40 – 11:40', icon: '🚀', tag: 'Session 3', title: 'Live App Build', kind: 'session' },
+  { time: '10:40 – 11:40', icon: '�', tag: 'Session 3', title: 'Live App Build', kind: 'session' },
   { time: '11:40 – 12:30', icon: '🤝', title: 'Networking, Q&A & refreshments', kind: 'break' },
+];
+
+const sessions = [
+  {
+    part: 1,
+    time: '9:00 – 9:40',
+    title: 'The AI Revolution for Business',
+    presenter: 'AI Bridge Solutions',
+    href: '/sessions/ai-revolution',
+    logo: '/aibridgelogo.png',
+    logoInvert: true,
+    color: '#6366f1',
+  },
+  {
+    part: 2,
+    time: '9:40 – 10:10',
+    title: 'PR in the Age of AI',
+    presenter: 'FirstName Communications',
+    href: '/sessions/pr-and-ai',
+    logo: '/fnc13c (003).png',
+    logoInvert: false,
+    color: '#06b6d4',
+  },
+  {
+    part: 3,
+    time: '10:40 – 11:40',
+    title: 'Live Build: App in an Afternoon',
+    presenter: 'AI Bridge Solutions',
+    href: '/sessions/live-build',
+    logo: '/aibridgelogo.png',
+    logoInvert: true,
+    color: '#a78bfa',
+  },
 ];
 
 export default function HomeFeatures() {
   const [visible, setVisible] = useState(false);
   const scheduleRef = useRef<HTMLDivElement | null>(null);
+
+  // Globe carousel state
+  const [rotation, setRotation] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [autoRotate, setAutoRotate] = useState(true);
+  const dragStartRef = useRef(0);
+  const rotationStartRef = useRef(0);
+  const animFrameRef = useRef<number>();
 
   useEffect(() => {
     const node = scheduleRef.current;
@@ -37,6 +80,45 @@ export default function HomeFeatures() {
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
+
+  // Auto-rotate globe
+  useEffect(() => {
+    if (!autoRotate || isDragging) return;
+    let lastTime = performance.now();
+    const animate = (time: number) => {
+      const delta = time - lastTime;
+      lastTime = time;
+      setRotation((r) => r + delta * 0.015);
+      animFrameRef.current = requestAnimationFrame(animate);
+    };
+    animFrameRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    };
+  }, [autoRotate, isDragging]);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    setIsDragging(true);
+    setAutoRotate(false);
+    dragStartRef.current = e.clientX;
+    rotationStartRef.current = rotation;
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isDragging) return;
+    const delta = e.clientX - dragStartRef.current;
+    setRotation(rotationStartRef.current + delta * 0.5);
+  };
+
+  const handlePointerUp = () => {
+    setIsDragging(false);
+    setTimeout(() => setAutoRotate(true), 3000);
+  };
+
+  const numItems = sessions.length;
+  const angleStep = 360 / numItems;
+  const radius = 240;
 
   return (
     <section style={{ position: 'relative', overflow: 'hidden', padding: '6rem 0' }}>
@@ -81,6 +163,130 @@ export default function HomeFeatures() {
             })}
           </div>
         </div>
+
+        {/* Globe / 3D Carousel — explore the sessions */}
+        <div
+          style={{
+            position: 'relative',
+            height: '440px',
+            perspective: '1200px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: isDragging ? 'grabbing' : 'grab',
+            userSelect: 'none',
+            marginTop: '4rem',
+          }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+        >
+          {/* Earth globe */}
+          <div style={{
+            position: 'absolute',
+            width: '260px',
+            height: '260px',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            pointerEvents: 'none',
+            zIndex: 0,
+            borderRadius: '50%',
+            overflow: 'hidden',
+            boxShadow: '0 0 80px rgba(30,144,255,0.25), 0 0 30px rgba(30,144,255,0.15)',
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/earth.jpg"
+              alt="Earth"
+              style={{ width: '130%', height: '130%', objectFit: 'cover', objectPosition: 'center', marginLeft: '-15%', marginTop: '-15%' }}
+            />
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              borderRadius: '50%',
+              background: 'radial-gradient(circle at 35% 35%, rgba(255,255,255,0.15) 0%, transparent 40%, rgba(0,0,30,0.6) 100%)',
+            }} />
+            <div style={{
+              position: 'absolute',
+              inset: '-3px',
+              borderRadius: '50%',
+              border: '2px solid rgba(100,200,255,0.3)',
+              boxShadow: '0 0 20px rgba(60,160,255,0.25), inset 0 0 20px rgba(0,50,100,0.3)',
+              pointerEvents: 'none',
+            }} />
+          </div>
+
+          {/* Rotating cards */}
+          <div style={{
+            position: 'absolute',
+            width: '300px',
+            height: '100%',
+            left: '50%',
+            top: 0,
+            marginLeft: '-150px',
+            transformStyle: 'preserve-3d',
+            transform: `rotateY(${rotation}deg)`,
+            transition: isDragging ? 'none' : undefined,
+            zIndex: 1,
+          }}>
+            {sessions.map((session, i) => {
+              const angle = -(angleStep * i);
+              return (
+                <div
+                  key={session.part}
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    width: '300px',
+                    marginLeft: '-150px',
+                    marginTop: '-110px',
+                    transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                    backfaceVisibility: 'hidden',
+                  }}
+                >
+                  <Link
+                    href={session.href}
+                    onClick={(e) => { if (isDragging) e.preventDefault(); }}
+                    style={{
+                      display: 'block',
+                      padding: '1.75rem',
+                      borderRadius: '1.25rem',
+                      background: 'rgba(20, 25, 45, 0.92)',
+                      border: '1px solid rgba(255,255,255,0.2)',
+                      boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
+                      textDecoration: 'none',
+                      transition: 'box-shadow 0.3s, border-color 0.3s',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = session.color;
+                      e.currentTarget.style.boxShadow = `0 8px 40px ${session.color}33, inset 0 1px 0 rgba(255,255,255,0.15)`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+                      e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)';
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                      <Image src={session.logo} alt={session.presenter} width={120} height={40} style={{ height: '36px', width: 'auto', maxWidth: '120px', objectFit: 'contain', filter: session.logoInvert ? 'invert(1) brightness(2)' : 'none' }} />
+                      <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: session.color, background: `${session.color}20`, padding: '0.2rem 0.6rem', borderRadius: '9999px' }}>Part {session.part}</span>
+                      <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginLeft: 'auto' }}>{session.time}</span>
+                    </div>
+                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '0.35rem', lineHeight: 1.3 }}>{session.title}</h3>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Presented by {session.presenter}</p>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Drag hint */}
+        <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
+          Drag to rotate • Click a session to learn more
+        </p>
       </div>
     </section>
   );

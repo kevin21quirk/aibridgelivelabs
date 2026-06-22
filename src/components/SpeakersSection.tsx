@@ -109,8 +109,8 @@ export default function SpeakersSection() {
               margin: '0 auto 1.5rem',
               borderRadius: '50%',
               overflow: 'hidden',
-              border: '4px solid rgba(6, 182, 212, 0.3)',
-              boxShadow: '0 8px 32px rgba(6, 182, 212, 0.2)'
+              border: '4px solid rgba(79, 70, 229, 0.3)',
+              boxShadow: '0 8px 32px rgba(79, 70, 229, 0.2)'
             }}>
               <Image 
                 src="/CJW pic.jpg" 
