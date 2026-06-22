@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: 'AI Bridge Live Labs - 2nd September 2026',
   description:
     'Join AI Bridge Solutions for an exclusive event demonstrating how AI can revolutionise your business. Limited to 100 tickets.',
+  icons: {
+    icon: '/favicon.ico',
+  },
   openGraph: {
     title: 'AI Bridge Live Labs',
     description: 'AI revolution for business. 2nd September 2026.',
