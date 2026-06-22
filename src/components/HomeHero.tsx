@@ -43,7 +43,7 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
       }} />
 
       {/* AI Bridge Logo - far left */}
-      <div style={{ 
+      <div className="hero-side-logo" style={{ 
         position: 'absolute',
         top: '50%',
         left: '3rem',
@@ -65,7 +65,7 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
       </div>
 
       {/* Firstname Communications Logo - far right */}
-      <div style={{ 
+      <div className="hero-side-logo" style={{ 
         position: 'absolute',
         top: '50%',
         right: '3rem',

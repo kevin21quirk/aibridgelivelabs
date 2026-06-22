@@ -104,13 +104,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="glass-panel" style={{ position: 'absolute', top: '4.5rem', left: '1rem', right: '1rem', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <Link href="/" onClick={() => setMobileOpen(false)} style={{ padding: '0.5rem 0', color: 'var(--text-muted)' }}>Home</Link>
-          <Link href="/sessions/ai-revolution" onClick={() => setMobileOpen(false)} style={{ padding: '0.5rem 0', color: 'var(--text-muted)' }}>Part 1: AI Revolution</Link>
-          <Link href="/sessions/pr-and-ai" onClick={() => setMobileOpen(false)} style={{ padding: '0.5rem 0', color: 'var(--text-muted)' }}>Part 2: PR & AI</Link>
-          <Link href="/sessions/live-build" onClick={() => setMobileOpen(false)} style={{ padding: '0.5rem 0', color: 'var(--text-muted)' }}>Part 3: Live Build</Link>
-          <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ padding: '0.5rem 0', color: 'var(--text-muted)' }}>Contact</Link>
-          <Link href="/booking" onClick={() => setMobileOpen(false)} className="btn btn-primary" style={{ textAlign: 'center', marginTop: '0.5rem' }}>Book Now</Link>
+        <div style={{ position: 'absolute', top: '4.5rem', left: '1rem', right: '1rem', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.25rem', background: 'rgba(26, 30, 48, 0.99)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '1rem', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
+          <Link href="/" onClick={() => setMobileOpen(false)} style={{ padding: '0.75rem 0.5rem', color: 'var(--text)', fontWeight: 600, borderRadius: '0.5rem' }}>Home</Link>
+          <Link href="/sessions/ai-revolution" onClick={() => setMobileOpen(false)} style={{ padding: '0.75rem 0.5rem', color: 'var(--text)', fontWeight: 600, borderRadius: '0.5rem' }}>Part 1: AI Revolution</Link>
+          <Link href="/sessions/pr-and-ai" onClick={() => setMobileOpen(false)} style={{ padding: '0.75rem 0.5rem', color: 'var(--text)', fontWeight: 600, borderRadius: '0.5rem' }}>Part 2: PR & AI</Link>
+          <Link href="/sessions/live-build" onClick={() => setMobileOpen(false)} style={{ padding: '0.75rem 0.5rem', color: 'var(--text)', fontWeight: 600, borderRadius: '0.5rem' }}>Part 3: Live Build</Link>
+          <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ padding: '0.75rem 0.5rem', color: 'var(--text)', fontWeight: 600, borderRadius: '0.5rem' }}>Contact</Link>
+          <Link href="/booking" onClick={() => setMobileOpen(false)} className="btn btn-primary" style={{ textAlign: 'center', marginTop: '0.75rem' }}>Book Now</Link>
         </div>
       )}
 
