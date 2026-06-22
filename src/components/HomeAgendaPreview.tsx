@@ -228,7 +228,7 @@ export default function HomeAgendaPreview() {
 
         {/* Full schedule */}
         <div className="glass-panel" style={{ maxWidth: '600px', margin: '0 auto', padding: '1.5rem 2rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', textAlign: 'center' }}>Full Day Schedule</h3>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1rem', textAlign: 'center' }}>Event Schedule</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.875rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)' }}>
               <span>☕ Sign in &amp; welcome</span><span style={{ fontWeight: 600, color: 'var(--text)' }}>8:30 am</span>
