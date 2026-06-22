@@ -19,16 +19,28 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
   }, []);
 
   return (
-    <section className="hero-gradient grid-pattern" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-      {/* Animated Blobs */}
-      <div className="animate-blob" style={{ position: 'absolute', top: '10%', left: '10%', width: '400px', height: '400px', borderRadius: '50%', background: 'rgba(79, 70, 229, 0.15)', filter: 'blur(80px)' }} />
-      <div className="animate-blob animation-delay-2000" style={{ position: 'absolute', top: '30%', right: '10%', width: '350px', height: '350px', borderRadius: '50%', background: 'rgba(6, 182, 212, 0.12)', filter: 'blur(80px)' }} />
-      <div className="animate-blob animation-delay-4000" style={{ position: 'absolute', bottom: '10%', left: '30%', width: '300px', height: '300px', borderRadius: '50%', background: 'rgba(139, 92, 246, 0.1)', filter: 'blur(80px)' }} />
-
-      {/* Floating Decorative Elements */}
-      <div className="animate-float" style={{ position: 'absolute', top: '20%', right: '15%', width: '60px', height: '60px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(10px)' }} />
-      <div className="animate-float-delayed" style={{ position: 'absolute', bottom: '25%', left: '12%', width: '40px', height: '40px', borderRadius: '50%', border: '1px solid rgba(79,70,229,0.3)', background: 'rgba(79,70,229,0.1)' }} />
-      <div className="animate-float" style={{ position: 'absolute', top: '60%', right: '8%', width: '30px', height: '30px', borderRadius: '6px', background: 'rgba(6,182,212,0.15)', border: '1px solid rgba(6,182,212,0.3)' }} />
+    <section style={{ 
+      position: 'relative', 
+      minHeight: '100vh', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center', 
+      overflow: 'hidden',
+      backgroundImage: 'url("/cyprus-compressed.jpg")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}>
+      {/* Dark overlay for text readability */}
+      <div style={{ 
+        position: 'absolute', 
+        top: 0, 
+        left: 0, 
+        right: 0, 
+        bottom: 0, 
+        background: 'linear-gradient(to bottom, rgba(30, 34, 53, 0.7), rgba(30, 34, 53, 0.85))',
+        zIndex: 1 
+      }} />
 
       {/* Content */}
       <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center', transform: `translateY(${scrollY * 0.3}px)` }}>

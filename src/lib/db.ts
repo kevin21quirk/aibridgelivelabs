@@ -2,11 +2,11 @@ import { neon, NeonQueryFunction } from '@neondatabase/serverless';
 
 let _sql: NeonQueryFunction<false, false> | null = null;
 
-function getSql() {
+function getSql(): NeonQueryFunction<false, false> {
   if (!_sql) {
     const url = process.env.DATABASE_URL;
     if (!url) {
-      throw new Error('DATABASE_URL is not set');
+      throw new Error('DATABASE_URL is not set — please add it to your environment variables');
     }
     _sql = neon(url);
   }
@@ -25,17 +25,26 @@ export interface Booking {
 }
 
 export async function getSoldTicketsCount(): Promise<number> {
-  const result = await getSql()`
-    SELECT COALESCE(SUM(tickets), 0) as count FROM bookings
-    WHERE stripe_payment_status = 'paid'
-  `;
-  return Number((result[0] as { count: number })?.count ?? 0);
+  try {
+    const result = await getSql()`
+      SELECT COALESCE(SUM(tickets), 0) as count FROM bookings
+      WHERE stripe_payment_status = 'paid'
+    `;
+    return Number((result[0] as { count: number })?.count ?? 0);
+  } catch (err) {
+    console.error('DB error in getSoldTicketsCount:', err);
+    return 0;
+  }
 }
 
 export async function getTicketsRemaining(): Promise<number> {
   const maxTickets = Number(process.env.NEXT_PUBLIC_MAX_TICKETS ?? 100);
-  const sold = await getSoldTicketsCount();
-  return Math.max(0, maxTickets - sold);
+  try {
+    const sold = await getSoldTicketsCount();
+    return Math.max(0, maxTickets - sold);
+  } catch {
+    return maxTickets;
+  }
 }
 
 export async function createBooking(
