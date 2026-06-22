@@ -52,8 +52,8 @@ export default function SpeakersSection() {
               margin: '0 auto 1.5rem',
               borderRadius: '50%',
               overflow: 'hidden',
-              border: '4px solid rgba(79, 70, 229, 0.3)',
-              boxShadow: '0 8px 32px rgba(79, 70, 229, 0.2)'
+              border: '4px solid rgba(129, 140, 248, 0.7)',
+              boxShadow: '0 0 0 1px rgba(79, 70, 229, 0.5), 0 0 28px rgba(79, 70, 229, 0.45)'
             }}>
               <Image 
                 src="/kq.png" 
@@ -109,8 +109,8 @@ export default function SpeakersSection() {
               margin: '0 auto 1.5rem',
               borderRadius: '50%',
               overflow: 'hidden',
-              border: '4px solid rgba(79, 70, 229, 0.3)',
-              boxShadow: '0 8px 32px rgba(79, 70, 229, 0.2)'
+              border: '4px solid rgba(129, 140, 248, 0.7)',
+              boxShadow: '0 0 0 1px rgba(79, 70, 229, 0.5), 0 0 28px rgba(79, 70, 229, 0.45)'
             }}>
               <Image 
                 src="/CJW pic.jpg" 

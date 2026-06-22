@@ -172,11 +172,14 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
           <div style={{ 
             display: 'inline-flex', 
             alignItems: 'center', 
-            gap: '0.75rem', 
-            padding: '0.75rem 2rem', 
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            maxWidth: '100%',
+            gap: '0.4rem 0.75rem', 
+            padding: '0.75rem 1.5rem', 
             background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(139, 92, 246, 0.1))', 
             backdropFilter: 'blur(20px)', 
-            borderRadius: '50px', 
+            borderRadius: '24px', 
             border: '2px solid rgba(79, 70, 229, 0.3)', 
             boxShadow: '0 8px 32px rgba(79, 70, 229, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }}>
@@ -189,9 +192,9 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
               Presented by
             </span>
             <span style={{ 
-              fontSize: '1rem', 
-              fontWeight: 700, 
-              color: '#8b5cf6',
+              fontSize: '1.1rem', 
+              fontWeight: 800, 
+              color: '#ffffff',
               letterSpacing: '0.05em'
             }}>
               AI Bridge Solutions
@@ -204,9 +207,9 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
               in partnership with
             </span>
             <span style={{ 
-              fontSize: '1rem', 
-              fontWeight: 700, 
-              color: '#06b6d4',
+              fontSize: '1.1rem', 
+              fontWeight: 800, 
+              color: '#ffffff',
               letterSpacing: '0.05em'
             }}>
               Firstname Communications
