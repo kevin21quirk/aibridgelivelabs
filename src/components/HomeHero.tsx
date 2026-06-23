@@ -92,11 +92,14 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
         <div className="fade-in-up" style={{ 
           display: 'inline-flex', 
           alignItems: 'center', 
-          gap: '0.75rem', 
-          padding: '0.75rem 2rem', 
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          maxWidth: '100%',
+          gap: '0.4rem 0.75rem', 
+          padding: '0.75rem 1.5rem', 
           background: 'linear-gradient(135deg, rgba(34, 211, 238, 0.15), rgba(6, 182, 212, 0.1))', 
           backdropFilter: 'blur(20px)', 
-          borderRadius: '50px', 
+          borderRadius: '24px', 
           border: '2px solid rgba(34, 211, 238, 0.3)', 
           marginBottom: '2rem',
           boxShadow: '0 8px 32px rgba(34, 211, 238, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'

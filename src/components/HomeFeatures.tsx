@@ -38,7 +38,7 @@ const sessions = [
     title: 'PR in the Age of AI',
     presenter: 'FirstName Communications',
     href: '/sessions/pr-and-ai',
-    logo: '/fnc13c (003).png',
+    logo: '/fnc.png',
     logoInvert: false,
     color: '#06b6d4',
   },
@@ -270,8 +270,8 @@ export default function HomeFeatures() {
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                      <Image src={session.logo} alt={session.presenter} width={120} height={40} style={{ height: '36px', width: 'auto', maxWidth: '120px', objectFit: 'contain', filter: session.logoInvert ? 'invert(1) brightness(2)' : 'none' }} />
-                      <span style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: session.color, background: `${session.color}20`, padding: '0.2rem 0.6rem', borderRadius: '9999px' }}>Part {session.part}</span>
+                      <Image src={session.logo} alt={session.presenter} width={140} height={48} style={{ height: '40px', width: 'auto', maxWidth: '140px', objectFit: 'contain', filter: session.logoInvert ? 'invert(1) brightness(2)' : 'none' }} />
+                      <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#fff', background: session.color, padding: '0.3rem 0.75rem', borderRadius: '9999px', boxShadow: `0 2px 10px ${session.color}80`, border: '1px solid rgba(255,255,255,0.25)' }}>Part {session.part}</span>
                       <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginLeft: 'auto' }}>{session.time}</span>
                     </div>
                     <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '0.35rem', lineHeight: 1.3 }}>{session.title}</h3>
