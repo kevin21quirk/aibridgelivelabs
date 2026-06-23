@@ -30,6 +30,7 @@ const sessions = [
     href: '/sessions/ai-revolution',
     logo: '/aibridgelogo.png',
     logoInvert: true,
+    logoPadded: false,
     color: '#6366f1',
   },
   {
@@ -40,6 +41,7 @@ const sessions = [
     href: '/sessions/pr-and-ai',
     logo: '/fnc.png',
     logoInvert: false,
+    logoPadded: true,
     color: '#06b6d4',
   },
   {
@@ -50,6 +52,7 @@ const sessions = [
     href: '/sessions/live-build',
     logo: '/aibridgelogo.png',
     logoInvert: true,
+    logoPadded: false,
     color: '#a78bfa',
   },
 ];
@@ -221,8 +224,10 @@ export default function HomeFeatures() {
           {/* Orbiting cards — each a sibling of the earth so they layer behind/in front of it */}
           {sessions.map((session, i) => {
             const angle = rotation - angleStep * i;
-            const depth = Math.cos((angle * Math.PI) / 180); // >0 front, <0 behind earth
-            const inFront = depth >= 0;
+            const depth = Math.cos((angle * Math.PI) / 180); // 1 = dead front, -1 = dead back
+            // Only the near-front card sits on top of the globe; as a card swings
+            // toward the sides it tucks BEHIND the earth before rotating out of view.
+            const inFront = depth > 0.45;
             return (
               <div
                 key={session.part}
@@ -262,9 +267,25 @@ export default function HomeFeatures() {
                   }}
                 >
                   {/* Logo on its own row for clarity */}
-                  <div style={{ display: 'flex', alignItems: 'center', minHeight: '48px', marginBottom: '0.85rem' }}>
-                    <Image src={session.logo} alt={session.presenter} width={200} height={64} style={{ height: '48px', width: 'auto', maxWidth: '200px', objectFit: 'contain', filter: session.logoInvert ? 'invert(1) brightness(2)' : 'none' }} />
-                  </div>
+                  {session.logoPadded ? (
+                    <div
+                      role="img"
+                      aria-label={session.presenter}
+                      style={{
+                        width: '170px',
+                        height: '58px',
+                        marginBottom: '0.85rem',
+                        backgroundImage: `url("${session.logo}")`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                        backgroundSize: 'auto 150px',
+                      }}
+                    />
+                  ) : (
+                    <div style={{ display: 'flex', alignItems: 'center', minHeight: '58px', marginBottom: '0.85rem' }}>
+                      <Image src={session.logo} alt={session.presenter} width={200} height={64} style={{ height: '50px', width: 'auto', maxWidth: '200px', objectFit: 'contain', filter: session.logoInvert ? 'invert(1) brightness(2)' : 'none' }} />
+                    </div>
+                  )}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.85rem' }}>
                     <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#fff', background: session.color, padding: '0.3rem 0.75rem', borderRadius: '9999px', boxShadow: `0 2px 10px ${session.color}80`, border: '1px solid rgba(255,255,255,0.25)' }}>Part {session.part}</span>
                     <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text)', marginLeft: 'auto' }}>{session.time}</span>
