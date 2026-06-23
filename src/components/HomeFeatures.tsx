@@ -191,7 +191,7 @@ export default function HomeFeatures() {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             pointerEvents: 'none',
-            zIndex: 0,
+            zIndex: 2,
             borderRadius: '50%',
             overflow: 'hidden',
             boxShadow: '0 0 80px rgba(30,144,255,0.25), 0 0 30px rgba(30,144,255,0.15)',
@@ -218,69 +218,63 @@ export default function HomeFeatures() {
             }} />
           </div>
 
-          {/* Rotating cards */}
-          <div style={{
-            position: 'absolute',
-            width: '300px',
-            height: '100%',
-            left: '50%',
-            top: 0,
-            marginLeft: '-150px',
-            transformStyle: 'preserve-3d',
-            transform: `rotateY(${rotation}deg)`,
-            transition: isDragging ? 'none' : undefined,
-            zIndex: 1,
-          }}>
-            {sessions.map((session, i) => {
-              const angle = -(angleStep * i);
-              return (
-                <div
-                  key={session.part}
+          {/* Orbiting cards — each a sibling of the earth so they layer behind/in front of it */}
+          {sessions.map((session, i) => {
+            const angle = rotation - angleStep * i;
+            const depth = Math.cos((angle * Math.PI) / 180); // >0 front, <0 behind earth
+            const inFront = depth >= 0;
+            return (
+              <div
+                key={session.part}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  width: '300px',
+                  marginLeft: '-150px',
+                  marginTop: '-110px',
+                  transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                  backfaceVisibility: 'hidden',
+                  transition: isDragging ? 'none' : undefined,
+                  zIndex: inFront ? 3 : 1,
+                }}
+              >
+                <Link
+                  href={session.href}
+                  onClick={(e) => { if (isDragging) e.preventDefault(); }}
                   style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    width: '300px',
-                    marginLeft: '-150px',
-                    marginTop: '-110px',
-                    transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                    backfaceVisibility: 'hidden',
+                    display: 'block',
+                    padding: '1.6rem 1.75rem',
+                    borderRadius: '1.25rem',
+                    background: 'rgba(20, 25, 45, 0.92)',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
+                    textDecoration: 'none',
+                    transition: 'box-shadow 0.3s, border-color 0.3s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = session.color;
+                    e.currentTarget.style.boxShadow = `0 8px 40px ${session.color}33, inset 0 1px 0 rgba(255,255,255,0.15)`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+                    e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)';
                   }}
                 >
-                  <Link
-                    href={session.href}
-                    onClick={(e) => { if (isDragging) e.preventDefault(); }}
-                    style={{
-                      display: 'block',
-                      padding: '1.75rem',
-                      borderRadius: '1.25rem',
-                      background: 'rgba(20, 25, 45, 0.92)',
-                      border: '1px solid rgba(255,255,255,0.2)',
-                      boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
-                      textDecoration: 'none',
-                      transition: 'box-shadow 0.3s, border-color 0.3s',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = session.color;
-                      e.currentTarget.style.boxShadow = `0 8px 40px ${session.color}33, inset 0 1px 0 rgba(255,255,255,0.15)`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
-                      e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)';
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-                      <Image src={session.logo} alt={session.presenter} width={140} height={48} style={{ height: '40px', width: 'auto', maxWidth: '140px', objectFit: 'contain', filter: session.logoInvert ? 'invert(1) brightness(2)' : 'none' }} />
-                      <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#fff', background: session.color, padding: '0.3rem 0.75rem', borderRadius: '9999px', boxShadow: `0 2px 10px ${session.color}80`, border: '1px solid rgba(255,255,255,0.25)' }}>Part {session.part}</span>
-                      <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginLeft: 'auto' }}>{session.time}</span>
-                    </div>
-                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '0.35rem', lineHeight: 1.3 }}>{session.title}</h3>
-                    <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Presented by {session.presenter}</p>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
+                  {/* Logo on its own row for clarity */}
+                  <div style={{ display: 'flex', alignItems: 'center', minHeight: '48px', marginBottom: '0.85rem' }}>
+                    <Image src={session.logo} alt={session.presenter} width={200} height={64} style={{ height: '48px', width: 'auto', maxWidth: '200px', objectFit: 'contain', filter: session.logoInvert ? 'invert(1) brightness(2)' : 'none' }} />
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.85rem' }}>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#fff', background: session.color, padding: '0.3rem 0.75rem', borderRadius: '9999px', boxShadow: `0 2px 10px ${session.color}80`, border: '1px solid rgba(255,255,255,0.25)' }}>Part {session.part}</span>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text)', marginLeft: 'auto' }}>{session.time}</span>
+                  </div>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '0.35rem', lineHeight: 1.3 }}>{session.title}</h3>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Presented by {session.presenter}</p>
+                </Link>
+              </div>
+            );
+          })}
         </div>
 
         {/* Drag hint */}
