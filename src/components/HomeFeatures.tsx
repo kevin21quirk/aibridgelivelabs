@@ -121,7 +121,7 @@ export default function HomeFeatures() {
 
   const numItems = sessions.length;
   const angleStep = 360 / numItems;
-  const radius = 240;
+  const radius = 340;
 
   return (
     <section style={{ position: 'relative', overflow: 'hidden', padding: '6rem 0' }}>
