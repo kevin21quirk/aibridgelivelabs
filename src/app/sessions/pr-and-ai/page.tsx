@@ -12,8 +12,8 @@ export default function PRAndAIPage() {
         {/* Background image */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("/Part2.webp")', backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 0 }} />
         {/* Dark overlay for legibility */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(10, 12, 20, 0.96) 0%, rgba(10, 12, 20, 0.88) 45%, rgba(10, 12, 20, 0.65) 100%)', zIndex: 0 }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10, 12, 20, 0.85) 0%, transparent 60%)', zIndex: 0 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(10, 12, 20, 0.85) 0%, rgba(10, 12, 20, 0.6) 45%, rgba(10, 12, 20, 0.3) 100%)', zIndex: 0 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10, 12, 20, 0.6) 0%, transparent 55%)', zIndex: 0 }} />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.45rem 1.1rem', background: 'rgba(6,182,212,0.25)', borderRadius: '9999px', border: '1px solid rgba(34,211,238,0.5)', marginBottom: '1.5rem', backdropFilter: 'blur(8px)' }}>
             <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#67e8f9', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Part 2 • 9:40 – 10:10</span>
