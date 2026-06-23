@@ -225,9 +225,10 @@ export default function HomeFeatures() {
           {sessions.map((session, i) => {
             const angle = rotation - angleStep * i;
             const depth = Math.cos((angle * Math.PI) / 180); // 1 = dead front, -1 = dead back
-            // Only the near-front card sits on top of the globe; as a card swings
-            // toward the sides it tucks BEHIND the earth before rotating out of view.
-            const inFront = depth > 0.45;
+            // Front half sits on top of the globe; back half passes BEHIND it.
+            const inFront = depth >= 0;
+            // Fade cards as they travel to the far side so the back ones read as "behind".
+            const opacity = 0.45 + 0.55 * ((depth + 1) / 2);
             return (
               <div
                 key={session.part}
@@ -238,8 +239,9 @@ export default function HomeFeatures() {
                   width: '300px',
                   marginLeft: '-150px',
                   marginTop: '-110px',
-                  transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                  backfaceVisibility: 'hidden',
+                  // Orbit out then counter-rotate so the card always faces the viewer (billboard)
+                  transform: `rotateY(${angle}deg) translateZ(${radius}px) rotateY(${-angle}deg)`,
+                  opacity,
                   transition: isDragging ? 'none' : undefined,
                   zIndex: inFront ? 3 : 1,
                 }}
@@ -272,13 +274,13 @@ export default function HomeFeatures() {
                       role="img"
                       aria-label={session.presenter}
                       style={{
-                        width: '170px',
-                        height: '58px',
-                        marginBottom: '0.85rem',
+                        width: '190px',
+                        height: '76px',
+                        marginBottom: '0.6rem',
                         backgroundImage: `url("${session.logo}")`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
-                        backgroundSize: 'auto 150px',
+                        backgroundSize: 'auto 128px',
                       }}
                     />
                   ) : (
