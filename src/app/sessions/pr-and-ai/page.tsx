@@ -9,16 +9,20 @@ export default function PRAndAIPage() {
 
       {/* Hero */}
       <section className="hero-gradient grid-pattern" style={{ position: 'relative', paddingTop: '8rem', paddingBottom: '5rem', overflow: 'hidden' }}>
-        <div className="animate-blob animation-delay-2000" style={{ position: 'absolute', top: '20%', left: '5%', width: '300px', height: '300px', borderRadius: '50%', background: 'rgba(6, 182, 212, 0.15)', filter: 'blur(80px)' }} />
+        {/* Background image */}
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url("/Part2.webp")', backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 0 }} />
+        {/* Dark overlay for legibility */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(10, 12, 20, 0.96) 0%, rgba(10, 12, 20, 0.88) 45%, rgba(10, 12, 20, 0.65) 100%)', zIndex: 0 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10, 12, 20, 0.85) 0%, transparent 60%)', zIndex: 0 }} />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 1rem', background: 'rgba(6,182,212,0.1)', borderRadius: '9999px', border: '1px solid rgba(6,182,212,0.2)', marginBottom: '1.5rem' }}>
-            <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Part 2 • 9:40 – 10:10</span>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.45rem 1.1rem', background: 'rgba(6,182,212,0.25)', borderRadius: '9999px', border: '1px solid rgba(34,211,238,0.5)', marginBottom: '1.5rem', backdropFilter: 'blur(8px)' }}>
+            <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#67e8f9', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Part 2 • 9:40 – 10:10</span>
           </div>
-          <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, marginBottom: '1rem', lineHeight: 1.1 }}>
+          <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, marginBottom: '1rem', lineHeight: 1.1, color: '#ffffff', textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}>
             PR in the <span className="gradient-text">Age of AI</span>
           </h1>
-          <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', maxWidth: '650px', lineHeight: 1.7 }}>
-            Presented by <strong style={{ color: 'var(--text)' }}>FirstName Communications</strong>
+          <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.85)', maxWidth: '650px', lineHeight: 1.7, textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}>
+            Presented by <strong style={{ color: '#ffffff' }}>FirstName Communications</strong>
           </p>
         </div>
       </section>
