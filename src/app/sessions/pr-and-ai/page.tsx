@@ -1,6 +1,7 @@
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
-import SessionExperience, { SessionData } from '../../../components/SessionExperience';
+import { SessionData } from '../../../components/SessionExperience';
+import PRExperience from '../../../components/PRExperience';
 
 const data: SessionData = {
   part: 'Part 2 • 9:40 – 10:10',
@@ -41,6 +42,10 @@ const data: SessionData = {
     title: 'About FirstName Communications',
     text: 'A specialist PR agency focused exclusively on the IT and AI industries — helping businesses tell their story, build credibility, and earn the coverage needed to accelerate growth in competitive markets.',
   },
+  quote: {
+    text: 'In a world where every company is becoming a technology company, the brands that win are the ones who tell their AI story first — and tell it best.',
+    attribution: 'FirstName Communications',
+  },
   prev: { href: '/sessions/ai-revolution', label: 'Part 1: The AI Revolution' },
   next: { href: '/sessions/live-build', label: 'Part 3: Live Build' },
 };
@@ -49,7 +54,7 @@ export default function PRAndAIPage() {
   return (
     <main>
       <Navbar />
-      <SessionExperience data={data} />
+      <PRExperience data={data} />
       <Footer />
     </main>
   );

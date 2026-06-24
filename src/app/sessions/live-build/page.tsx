@@ -1,6 +1,7 @@
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
-import SessionExperience, { SessionData } from '../../../components/SessionExperience';
+import { SessionData } from '../../../components/SessionExperience';
+import LiveBuildExperience from '../../../components/LiveBuildExperience';
 
 const data: SessionData = {
   part: 'Part 3 • 10:40 – 11:40',
@@ -48,7 +49,7 @@ export default function LiveBuildPage() {
   return (
     <main>
       <Navbar />
-      <SessionExperience data={data} />
+      <LiveBuildExperience data={data} />
       <Footer />
     </main>
   );

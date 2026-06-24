@@ -1,6 +1,7 @@
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
-import SessionExperience, { SessionData } from '../../../components/SessionExperience';
+import { SessionData } from '../../../components/SessionExperience';
+import RevolutionExperience from '../../../components/RevolutionExperience';
 
 const data: SessionData = {
   part: 'Part 1 • 9:00 – 9:40',
@@ -44,7 +45,7 @@ export default function AIRevolutionPage() {
   return (
     <main>
       <Navbar />
-      <SessionExperience data={data} />
+      <RevolutionExperience data={data} />
       <Footer />
     </main>
   );
