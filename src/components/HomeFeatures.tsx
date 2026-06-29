@@ -37,7 +37,7 @@ const sessions = [
     part: 2,
     time: '9:40 – 10:10',
     title: 'PR in the Age of AI',
-    presenter: 'FirstName Communications',
+    presenter: 'Firstname Communications',
     href: '/sessions/pr-and-ai',
     logo: '/fnc.png',
     logoInvert: false,

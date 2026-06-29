@@ -30,7 +30,7 @@ export default function TicketCard({ remaining }: TicketCardProps) {
         <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem', textAlign: 'left' }}>
           {[
             'AI strategy masterclass by AI Bridge Solutions',
-            'PR & branding insights from FirstName Communications',
+            'PR & branding insights from Firstname Communications',
             'Live app build demonstration',
             'Networking opportunities with industry leaders',
             'Refreshments included',

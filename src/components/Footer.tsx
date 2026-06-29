@@ -35,6 +35,15 @@ export default function Footer() {
               <Link href="/contact" style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Contact Us</Link>
             </div>
           </div>
+
+          {/* Contact */}
+          <div>
+            <h4 style={{ fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Contact</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <a href="mailto:support@aibridgesolutions.co.uk" style={{ fontSize: '0.85rem', color: 'var(--text-muted)', wordBreak: 'break-word' }}>support@aibridgesolutions.co.uk</a>
+              <a href="tel:+447359969266" style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>+44 7359 969266</a>
+            </div>
+          </div>
         </div>
 
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '1.5rem', textAlign: 'center' }}>

@@ -27,9 +27,12 @@ export async function POST(req: NextRequest) {
     const origin = req.headers.get('origin') || 'http://localhost:3000';
 
     const session = await getStripe().checkout.sessions.create({
-      payment_method_types: ['card'],
+      // Omitting payment_method_types lets Stripe show every method you
+      // enable in your Stripe Dashboard (cards, Apple Pay, Google Pay, etc.).
       mode: 'payment',
       customer_email: email,
+      billing_address_collection: 'auto',
+      allow_promotion_codes: true,
       line_items: [
         {
           price_data: {

@@ -64,7 +64,7 @@ export default function Navbar() {
                   onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-muted)'; }}
                 >
                   <strong style={{ display: 'block', color: 'inherit' }}>Part 2: PR in the Age of AI</strong>
-                  <span style={{ fontSize: '0.75rem', opacity: 0.7 }}>FirstName Communications</span>
+                  <span style={{ fontSize: '0.75rem', opacity: 0.7 }}>Firstname Communications</span>
                 </Link>
                 <Link href="/sessions/live-build" style={{ display: 'block', padding: '0.75rem 1rem', borderRadius: '0.5rem', fontSize: '0.875rem', color: 'var(--text-muted)', transition: 'all 0.2s' }}
                   onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(79,70,229,0.15)'; e.currentTarget.style.color = '#fff'; }}

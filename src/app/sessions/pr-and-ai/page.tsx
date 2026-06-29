@@ -13,7 +13,7 @@ const data: SessionData = {
   bgImage: '/Part2.webp',
   titleLead: 'PR in the ',
   titleHighlight: 'Age of AI',
-  presenter: 'FirstName Communications',
+  presenter: 'Firstname Communications',
   tagline: 'Position your brand, craft a compelling AI narrative, and turn media attention into momentum.',
   stats: [
     { value: '30', label: 'Minutes' },
@@ -24,7 +24,7 @@ const data: SessionData = {
   overviewKicker: 'Session Overview',
   overviewHeading: 'Make your AI story impossible to ignore',
   overview: [
-    "FirstName Communications are specialists in public relations for the IT and AI sectors. In this session, they'll share how to position your brand, craft compelling narratives around technology adoption, and leverage media attention to amplify your AI story.",
+    "Firstname Communications are specialists in public relations for the IT and AI sectors. In this session, they'll share how to position your brand, craft compelling narratives around technology adoption, and leverage media attention to amplify your AI story.",
     "In a world where every company is becoming a technology company, your PR strategy must evolve. Learn how to stand out, attract the right attention, and build thought leadership in the AI space.",
   ],
   learnKicker: "What You'll Learn",
@@ -39,12 +39,12 @@ const data: SessionData = {
   ],
   highlight: {
     emoji: '🤝',
-    title: 'About FirstName Communications',
+    title: 'About Firstname Communications',
     text: 'A specialist PR agency focused exclusively on the IT and AI industries — helping businesses tell their story, build credibility, and earn the coverage needed to accelerate growth in competitive markets.',
   },
   quote: {
     text: 'In a world where every company is becoming a technology company, the brands that win are the ones who tell their AI story first — and tell it best.',
-    attribution: 'FirstName Communications',
+    attribution: 'Firstname Communications',
   },
   prev: { href: '/sessions/ai-revolution', label: 'Part 1: The AI Revolution' },
   next: { href: '/sessions/live-build', label: 'Part 3: Live Build' },

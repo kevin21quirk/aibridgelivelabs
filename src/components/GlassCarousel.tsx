@@ -27,9 +27,9 @@ export default function GlassCarousel() {
       icon: '📢',
       tag: 'PR & Media',
       title: 'Technology PR',
-      subtitle: 'FirstName Communications',
+      subtitle: 'Firstname Communications',
       detail: 'Position your brand at the forefront of innovation with expert PR strategies for the AI age.',
-      fullDescription: 'FirstName Communications will reveal how to craft compelling technology narratives, secure media coverage in top-tier publications, and build thought leadership that attracts clients, investors, and talent to your AI-forward business.',
+      fullDescription: 'Firstname Communications will reveal how to craft compelling technology narratives, secure media coverage in top-tier publications, and build thought leadership that attracts clients, investors, and talent to your AI-forward business.',
     },
     {
       icon: '🚀',

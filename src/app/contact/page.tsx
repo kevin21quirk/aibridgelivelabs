@@ -1,8 +1,13 @@
 'use client';
 
+import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { useState, FormEvent } from 'react';
+
+const SUPPORT_EMAIL = 'support@aibridgesolutions.co.uk';
+const SUPPORT_PHONE_DISPLAY = '+44 7359 969266';
+const SUPPORT_PHONE_TEL = '+447359969266';
 
 export default function ContactPage() {
   const [name, setName] = useState('');
@@ -12,6 +17,9 @@ export default function ContactPage() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const subject = encodeURIComponent(`Enquiry from ${name} — AI Bridge Live Labs`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
     setSubmitted(true);
   }
 
@@ -46,8 +54,9 @@ export default function ContactPage() {
           <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '1rem' }}>
             Get in <span className="gradient-text">Touch</span>
           </h1>
-          <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', maxWidth: '500px', lineHeight: 1.7 }}>
-            Have a question about AI Bridge Live Labs? We&apos;d love to hear from you.
+          <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', maxWidth: '560px', lineHeight: 1.7 }}>
+            Have a question about AI Bridge Live Labs? Send us a message below — or if
+            you&apos;re ready to attend, you can <Link href="/booking" className="gradient-text" style={{ fontWeight: 700 }}>buy your tickets online</Link>.
           </p>
         </div>
       </section>
@@ -103,21 +112,34 @@ export default function ContactPage() {
           )}
 
           <div style={{ marginTop: '2.5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-            <div className="card" style={{ textAlign: 'center', padding: '1.5rem' }}>
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="card" style={{ textAlign: 'center', padding: '1.5rem', display: 'block' }}>
               <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>📧</div>
               <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Email</p>
-              <p style={{ fontWeight: 600, fontSize: '0.9rem' }}>info@aibridgesolutions.com</p>
-            </div>
+              <p style={{ fontWeight: 600, fontSize: '0.9rem', wordBreak: 'break-word' }}>{SUPPORT_EMAIL}</p>
+            </a>
+            <a href={`tel:${SUPPORT_PHONE_TEL}`} className="card" style={{ textAlign: 'center', padding: '1.5rem', display: 'block' }}>
+              <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>📞</div>
+              <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Phone</p>
+              <p style={{ fontWeight: 600, fontSize: '0.9rem' }}>{SUPPORT_PHONE_DISPLAY}</p>
+            </a>
             <div className="card" style={{ textAlign: 'center', padding: '1.5rem' }}>
               <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>📍</div>
               <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Event Date</p>
               <p style={{ fontWeight: 600, fontSize: '0.9rem' }}>2nd September 2026</p>
             </div>
-            <div className="card" style={{ textAlign: 'center', padding: '1.5rem' }}>
+            <Link href="/booking" className="card" style={{ textAlign: 'center', padding: '1.5rem', display: 'block' }}>
               <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🎟️</div>
               <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Tickets</p>
-              <p style={{ fontWeight: 600, fontSize: '0.9rem' }}>£10 per person</p>
-            </div>
+              <p style={{ fontWeight: 600, fontSize: '0.9rem' }}>£10 — Buy online</p>
+            </Link>
+          </div>
+
+          <div className="glass-panel" style={{ marginTop: '2.5rem', padding: '2rem', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '0.5rem' }}>Ready to join us?</h2>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', lineHeight: 1.7 }}>
+              Skip the wait and secure your place now — tickets are just £10 and limited to 100 seats.
+            </p>
+            <Link href="/booking" className="btn btn-primary">Buy Tickets Online</Link>
           </div>
         </div>
       </section>

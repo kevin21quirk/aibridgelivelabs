@@ -11,9 +11,9 @@ export default function EventSections() {
     {
       time: '11:45 – 13:00',
       title: 'PR in the Age of AI',
-      presenter: 'FirstName Communications',
+      presenter: 'Firstname Communications',
       description:
-        'FirstName Communications specialise in public relations for the IT and AI sectors. This session covers how to position your brand, craft compelling narratives around technology adoption, and leverage media attention to amplify your AI story.',
+        'Firstname Communications specialise in public relations for the IT and AI sectors. This session covers how to position your brand, craft compelling narratives around technology adoption, and leverage media attention to amplify your AI story.',
       icon: '📢',
     },
     {
