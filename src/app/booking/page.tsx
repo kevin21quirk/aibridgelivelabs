@@ -1,12 +1,19 @@
+import Link from 'next/link';
 import Navbar from '../../components/Navbar';
-import BookingForm from '../../components/BookingForm';
 import Footer from '../../components/Footer';
-import { getTicketsRemaining } from '../../lib/db';
+import { PAYMENT_LINK_URL, TICKETS_REMAINING, MAX_TICKETS, TICKET_PRICE_GBP } from '../../lib/event';
 
-export const dynamic = 'force-dynamic';
+const INCLUDED = [
+  'AI strategy masterclass by AI Bridge Solutions',
+  'PR & branding insights from Firstname Communications',
+  'Live app build demonstration',
+  'Networking opportunities with industry leaders',
+  'Refreshments included',
+];
 
-export default async function BookingPage() {
-  const remaining = await getTicketsRemaining();
+export default function BookingPage() {
+  const remaining = TICKETS_REMAINING;
+  const soldOut = remaining <= 0;
 
   return (
     <main>
@@ -18,13 +25,47 @@ export default async function BookingPage() {
             Secure your <span className="gradient-text">ticket</span>
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>
-            Complete the form below to purchase your £10 ticket for AI Bridge Live Labs.
+            One ticket gives you full-day access to all three sessions on 2nd September 2026.
           </p>
         </div>
       </section>
       <section className="container" style={{ paddingTop: '0' }}>
-        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-          <BookingForm remaining={remaining} />
+        <div className="glass-panel" style={{ maxWidth: '600px', margin: '0 auto', padding: 'clamp(1.75rem, 4vw, 2.75rem)', textAlign: 'center' }}>
+          <div style={{ marginBottom: '1.5rem' }}>
+            <p style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.25rem' }}>Full Event Pass</p>
+            <p style={{ fontSize: '2.5rem', fontWeight: 800 }} className="gradient-text">
+              £{TICKET_PRICE_GBP}
+              <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}> / person</span>
+            </p>
+          </div>
+
+          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', textAlign: 'left' }}>
+            {INCLUDED.map((item) => (
+              <li key={item} style={{ padding: '0.5rem 0', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: 700 }}>✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <p style={{ color: soldOut ? '#ef4444' : 'var(--accent)', fontWeight: 600, marginBottom: '1.25rem' }}>
+            {soldOut ? 'All tickets have been sold' : `${remaining} of ${MAX_TICKETS} tickets remaining`}
+          </p>
+
+          {soldOut ? (
+            <span className="btn btn-secondary" style={{ width: '100%', opacity: 0.6 }}>Sold out</span>
+          ) : (
+            <a href={PAYMENT_LINK_URL} className="btn btn-primary glow" style={{ width: '100%' }}>
+              Buy Tickets — £{TICKET_PRICE_GBP}
+            </a>
+          )}
+
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '1rem' }}>
+            Secure payment processed by Stripe. You can pay by card and other supported methods.
+          </p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.75rem' }}>
+            Have questions first? <Link href="/contact" className="gradient-text" style={{ fontWeight: 700 }}>Contact us</Link>.
+          </p>
         </div>
       </section>
       <Footer />

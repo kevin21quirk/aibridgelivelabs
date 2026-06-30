@@ -5,12 +5,10 @@ import HomeFeatures from '../components/HomeFeatures';
 import GlassCarousel from '../components/GlassCarousel';
 import SpeakersSection from '../components/SpeakersSection';
 import HomeCTA from '../components/HomeCTA';
-import { getTicketsRemaining } from '../lib/db';
+import { TICKETS_REMAINING } from '../lib/event';
 
-export const dynamic = 'force-dynamic';
-
-export default async function HomePage() {
-  const remaining = await getTicketsRemaining();
+export default function HomePage() {
+  const remaining = TICKETS_REMAINING;
 
   return (
     <main>
