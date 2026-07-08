@@ -15,9 +15,9 @@ interface Stop {
 const schedule: Stop[] = [
   { time: '8:30 am', icon: '👋', title: 'Sign in & welcome', kind: 'break' },
   { time: '9:00 – 9:40', icon: '💡', tag: 'Session 1', title: 'The AI Revolution', kind: 'session' },
-  { time: '9:40 – 10:10', icon: '�', tag: 'Session 2', title: 'PR in the Age of AI', kind: 'session' },
+  { time: '9:40 – 10:10', icon: '📢', tag: 'Session 2', title: 'PR in the Age of AI', kind: 'session' },
   { time: '10:10 – 10:40', icon: '☕', title: 'Tea & coffee break', kind: 'break' },
-  { time: '10:40 – 11:40', icon: '�', tag: 'Session 3', title: 'Live App Build', kind: 'session' },
+  { time: '10:40 – 11:40', icon: '🛠️', tag: 'Session 3', title: 'Live App Build', kind: 'session' },
   { time: '11:40 – 12:30', icon: '🤝', title: 'Networking, Q&A & refreshments', kind: 'break' },
 ];
 
