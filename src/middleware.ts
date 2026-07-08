@@ -3,8 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip the login page itself
-  if (pathname === '/admin/login') return NextResponse.next();
+  // Skip the login page and login API route
+  if (pathname === '/admin/login' || pathname === '/api/admin/login' || pathname === '/api/admin/logout') {
+    return NextResponse.next();
+  }
 
   const adminToken = request.cookies.get('admin_token')?.value;
   const validToken = process.env.ADMIN_TOKEN;
