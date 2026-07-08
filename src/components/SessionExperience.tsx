@@ -197,7 +197,7 @@ export function SessionCTA({ data }: { data: SessionData }) {
         <div className="fx-reveal fx-cta">
           <h2 className="fx-heading" style={{ marginBottom: '0.75rem' }}>Ready to see it in person?</h2>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '560px', margin: '0 auto 1.75rem' }}>
-            Just £10 secures your seat. Limited to 100 places — when they&apos;re gone, they&apos;re gone.
+            Just £10 secures your seat at this exclusive event.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '2rem' }}>
             <Link href="/booking" className="btn btn-primary">Book Your Ticket — £10</Link>

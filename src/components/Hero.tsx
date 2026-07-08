@@ -1,13 +1,8 @@
 import Link from 'next/link';
 import { formatDate } from '../lib/utils';
 
-interface HeroProps {
-  remaining: number;
-}
-
-export default function Hero({ remaining }: HeroProps) {
+export default function Hero() {
   const eventDate = process.env.NEXT_PUBLIC_EVENT_DATE ?? '2026-09-02';
-  const soldOut = remaining <= 0;
 
   return (
     <section
@@ -36,19 +31,10 @@ export default function Hero({ remaining }: HeroProps) {
           <span className="card" style={{ fontWeight: 600 }}>
             £10 per ticket
           </span>
-          <span className="card" style={{ fontWeight: 600 }}>
-            {soldOut ? 'Sold out' : `${remaining} tickets remaining`}
-          </span>
         </div>
-        {soldOut ? (
-          <span className="btn" style={{ background: 'var(--bg-light)', color: 'var(--text-muted)' }}>
-            Sold out
-          </span>
-        ) : (
-          <Link href="/booking" className="btn btn-primary glow">
-            Book your ticket
-          </Link>
-        )}
+        <Link href="/booking" className="btn btn-primary glow">
+          Book your ticket
+        </Link>
       </div>
     </section>
   );

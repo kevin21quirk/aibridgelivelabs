@@ -137,7 +137,7 @@ export default function ContactPage() {
           <div className="glass-panel" style={{ marginTop: '2.5rem', padding: '2rem', textAlign: 'center' }}>
             <h2 style={{ fontSize: '1.35rem', fontWeight: 700, marginBottom: '0.5rem' }}>Ready to join us?</h2>
             <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', lineHeight: 1.7 }}>
-              Skip the wait and secure your place now — tickets are just £10 and limited to 100 seats.
+              Skip the wait and secure your place now — tickets are just £10.
             </p>
             <Link href="/booking" className="btn btn-primary">Buy Tickets Online</Link>
           </div>

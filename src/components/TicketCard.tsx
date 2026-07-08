@@ -1,12 +1,6 @@
 import Link from 'next/link';
 
-interface TicketCardProps {
-  remaining: number;
-}
-
-export default function TicketCard({ remaining }: TicketCardProps) {
-  const soldOut = remaining <= 0;
-
+export default function TicketCard() {
   return (
     <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
       <p style={{ color: 'var(--accent)', fontWeight: 600, letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
@@ -42,19 +36,9 @@ export default function TicketCard({ remaining }: TicketCardProps) {
           ))}
         </ul>
 
-        <p style={{ color: soldOut ? '#ef4444' : 'var(--accent)', fontWeight: 600, marginBottom: '1rem' }}>
-          {soldOut ? 'All tickets have been sold' : `${remaining} of 100 tickets remaining`}
-        </p>
-
-        {soldOut ? (
-          <span className="btn" style={{ width: '100%', background: 'var(--bg)', color: 'var(--text-muted)' }}>
-            Sold out
-          </span>
-        ) : (
-          <Link href="/booking" className="btn btn-primary glow" style={{ width: '100%' }}>
-            Book your ticket
-          </Link>
-        )}
+        <Link href="/booking" className="btn btn-primary glow" style={{ width: '100%' }}>
+          Book your ticket
+        </Link>
       </div>
     </div>
   );

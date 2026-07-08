@@ -4,13 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-interface HomeHeroProps {
-  remaining: number;
-}
-
-export default function HomeHero({ remaining }: HomeHeroProps) {
+export default function HomeHero() {
   const [scrollY, setScrollY] = useState(0);
-  const soldOut = remaining <= 0;
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -144,24 +139,6 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
               Sign in 8:30am
             </span>
           </div>
-          <div style={{ 
-            width: '1px', 
-            height: '20px', 
-            background: 'rgba(255, 255, 255, 0.2)' 
-          }} />
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '0.5rem'
-          }}>
-            <span style={{ 
-              fontSize: '0.9rem', 
-              fontWeight: 500, 
-              color: 'rgba(255, 255, 255, 0.9)'
-            }}>
-              Limited to 100 places
-            </span>
-          </div>
         </div>
 
         {/* Enhanced Partnership Section with Logos */}
@@ -234,13 +211,9 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
 
         {/* CTA Buttons */}
         <div className="fade-in-up-delay-3" style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3rem' }}>
-          {soldOut ? (
-            <span className="btn btn-secondary" style={{ opacity: 0.6 }}>Sold Out</span>
-          ) : (
-            <Link href="/booking" className="btn btn-primary">
-              Book Your Ticket — £10
-            </Link>
-          )}
+          <Link href="/booking" className="btn btn-primary">
+            Book Your Ticket — £10
+          </Link>
           <Link href="/sessions/ai-revolution" className="btn btn-secondary">
             View Sessions
           </Link>
@@ -251,10 +224,6 @@ export default function HomeHero({ remaining }: HomeHeroProps) {
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">3</div>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Sessions</div>
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">{remaining}</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Tickets Left</div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '2rem', fontWeight: 800 }} className="gradient-text">£10</div>

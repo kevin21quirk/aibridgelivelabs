@@ -1,12 +1,6 @@
 import Link from 'next/link';
 
-interface HomeCTAProps {
-  remaining: number;
-}
-
-export default function HomeCTA({ remaining }: HomeCTAProps) {
-  const soldOut = remaining <= 0;
-
+export default function HomeCTA() {
   return (
     <section style={{ position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(79,70,229,0.3), transparent)' }} />
@@ -21,16 +15,11 @@ export default function HomeCTA({ remaining }: HomeCTAProps) {
           </h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', marginBottom: '2rem', lineHeight: 1.7 }}>
             Join us on 2nd September 2026 for an event that will change how you think about technology forever.
-            {!soldOut && ` Only ${remaining} tickets remaining.`}
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {soldOut ? (
-              <span className="btn btn-secondary" style={{ opacity: 0.6 }}>Sold Out</span>
-            ) : (
-              <Link href="/booking" className="btn btn-primary">
-                Secure Your Place — £10
-              </Link>
-            )}
+            <Link href="/booking" className="btn btn-primary">
+              Secure Your Place — £10
+            </Link>
             <Link href="/contact" className="btn btn-secondary">
               Get in Touch
             </Link>

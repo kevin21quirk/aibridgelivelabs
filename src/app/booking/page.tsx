@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import { PAYMENT_LINK_URL, TICKETS_REMAINING, MAX_TICKETS, TICKET_PRICE_GBP } from '../../lib/event';
+import { PAYMENT_LINK_URL, TICKET_PRICE_GBP } from '../../lib/event';
 
 const INCLUDED = [
   'AI strategy masterclass by AI Bridge Solutions',
@@ -12,9 +12,6 @@ const INCLUDED = [
 ];
 
 export default function BookingPage() {
-  const remaining = TICKETS_REMAINING;
-  const soldOut = remaining <= 0;
-
   return (
     <main>
       <Navbar />
@@ -48,17 +45,9 @@ export default function BookingPage() {
             ))}
           </ul>
 
-          <p style={{ color: soldOut ? '#ef4444' : 'var(--accent)', fontWeight: 600, marginBottom: '1.25rem' }}>
-            {soldOut ? 'All tickets have been sold' : `${remaining} of ${MAX_TICKETS} tickets remaining`}
-          </p>
-
-          {soldOut ? (
-            <span className="btn btn-secondary" style={{ width: '100%', opacity: 0.6 }}>Sold out</span>
-          ) : (
-            <a href={PAYMENT_LINK_URL} className="btn btn-primary glow" style={{ width: '100%' }}>
-              Buy Tickets — £{TICKET_PRICE_GBP}
-            </a>
-          )}
+          <a href={PAYMENT_LINK_URL} className="btn btn-primary glow" style={{ width: '100%' }}>
+            Buy Tickets — £{TICKET_PRICE_GBP}
+          </a>
 
           <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '1rem' }}>
             Secure payment processed by Stripe. You can pay by card and other supported methods.
