@@ -1,51 +1,42 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import QRCode from 'qrcode';
 import { Ticket } from './db';
 import { formatAmount } from './ticket';
 
-function getTransporter() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST!,
-    port: parseInt(process.env.SMTP_PORT ?? '587'),
-    secure: process.env.SMTP_PORT === '465',
-    auth: {
-      user: process.env.SMTP_USER!,
-      pass: process.env.SMTP_PASS!,
-    },
-  });
-}
-
 export async function sendTicketEmail(ticket: Ticket): Promise<void> {
-  const baseUrl = process.env.APP_BASE_URL ?? 'https://ai-bridge-live-labs.vercel.app';
+  if (!process.env.RESEND_API_KEY) throw new Error('RESEND_API_KEY is not set');
+
+  const baseUrl = process.env.APP_BASE_URL ?? 'https://aibridgelivelabs.com';
   const checkInUrl = `${baseUrl}/admin/checkin/${ticket.secure_token}`;
 
-  const qrBuffer = await QRCode.toBuffer(checkInUrl, {
+  // Generate QR code as a base64 PNG data URL
+  const qrDataUrl = await QRCode.toDataURL(checkInUrl, {
     width: 280,
     margin: 2,
     errorCorrectionLevel: 'M',
     color: { dark: '#000000', light: '#ffffff' },
   });
+  // Strip the data:image/png;base64, prefix to get raw base64
+  const qrBase64 = qrDataUrl.replace(/^data:image\/png;base64,/, '');
 
   const amountStr = formatAmount(ticket.amount_paid, ticket.currency);
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
-  const transporter = getTransporter();
-  await transporter.sendMail({
-    from: `"AI Bridge Solutions" <${process.env.SMTP_FROM ?? 'kevin@aibridgesolutions.co.uk'}>`,
+  await resend.emails.send({
+    from: `AI Bridge Solutions <${process.env.SMTP_FROM ?? 'kevin@aibridgesolutions.co.uk'}>`,
     to: ticket.buyer_email,
     subject: 'Your AI Bridge Live Labs Ticket — 2 September 2026',
-    html: buildEmailHtml(ticket, amountStr),
+    html: buildEmailHtml(ticket, amountStr, qrDataUrl),
     attachments: [
       {
         filename: 'ticket-qr.png',
-        content: qrBuffer,
-        cid: 'qrcode@aibridge',
-        contentType: 'image/png',
+        content: qrBase64,
       },
     ],
   });
 }
 
-function buildEmailHtml(ticket: Ticket, amountStr: string): string {
+function buildEmailHtml(ticket: Ticket, amountStr: string, qrDataUrl: string): string {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,7 +108,7 @@ function buildEmailHtml(ticket: Ticket, amountStr: string): string {
             <tr><td align="center">
               <p style="color:#94a3b8;font-size:14px;margin:0 0 14px;">&#128241; Please show this QR code at registration</p>
               <div style="background:#fff;display:inline-block;padding:14px;border-radius:10px;line-height:0;">
-                <img src="cid:qrcode@aibridge" alt="Ticket QR Code" width="220" height="220" style="display:block;">
+                <img src="${qrDataUrl}" alt="Ticket QR Code" width="220" height="220" style="display:block;">
               </div>
             </td></tr>
           </table>
