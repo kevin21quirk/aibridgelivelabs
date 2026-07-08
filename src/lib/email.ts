@@ -26,17 +26,18 @@ export async function sendTicketEmail(ticket: Ticket): Promise<void> {
     from: `AI Bridge Solutions <${process.env.SMTP_FROM ?? 'kevin@aibridgesolutions.co.uk'}>`,
     to: ticket.buyer_email,
     subject: 'Your AI Bridge Live Labs Ticket — 2 September 2026',
-    html: buildEmailHtml(ticket, amountStr, qrDataUrl),
+    html: buildEmailHtml(ticket, amountStr),
     attachments: [
       {
         filename: 'ticket-qr.png',
         content: qrBase64,
+        contentId: 'qrcode',
       },
     ],
   });
 }
 
-function buildEmailHtml(ticket: Ticket, amountStr: string, qrDataUrl: string): string {
+function buildEmailHtml(ticket: Ticket, amountStr: string): string {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,7 +109,7 @@ function buildEmailHtml(ticket: Ticket, amountStr: string, qrDataUrl: string): s
             <tr><td align="center">
               <p style="color:#94a3b8;font-size:14px;margin:0 0 14px;">&#128241; Please show this QR code at registration</p>
               <div style="background:#fff;display:inline-block;padding:14px;border-radius:10px;line-height:0;">
-                <img src="${qrDataUrl}" alt="Ticket QR Code" width="220" height="220" style="display:block;">
+                <img src="cid:qrcode" alt="Ticket QR Code" width="220" height="220" style="display:block;">
               </div>
             </td></tr>
           </table>
