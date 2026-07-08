@@ -3,7 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   const { token } = await request.json();
 
-  if (!process.env.ADMIN_TOKEN || token !== process.env.ADMIN_TOKEN) {
+  const envToken = process.env.ADMIN_TOKEN;
+  console.log('[admin/login] env token set:', !!envToken, '| env length:', envToken?.length, '| submitted length:', token?.length, '| match:', token === envToken);
+
+  if (!envToken || token !== envToken) {
     return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
   }
 
